@@ -7,8 +7,18 @@
       <v-toolbar-title>Bathroom Stall</v-toolbar-title>
     </v-app-bar>
 
-    <TextPost></TextPost>
+    <TextPost v-for="(post, index) in posts" :key="index" :text=post></TextPost>
 
+    <v-btn
+      fab
+      bottom
+      right
+      fixed
+      class="more-margin"
+      @click="createNewPost"
+    >
+      <v-icon>mdi-comment-plus-outline</v-icon>
+    </v-btn>
   </v-app>
 </template>
 
@@ -21,7 +31,18 @@ export default {
     TextPost,
   },
   data: () => ({
-    //
+    posts: ["This is a test post"],
   }),
+  methods: {
+    createNewPost() {
+      this.posts.push("This is a new dynamically added post.");
+    }
+  },
 };
 </script>
+
+<style>
+.more-margin {
+  margin: 32px;
+}
+</style>

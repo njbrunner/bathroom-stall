@@ -7,7 +7,9 @@
       <v-toolbar-title>Bathroom Stall</v-toolbar-title>
     </v-app-bar>
 
-    <TextPost v-for="(post, index) in posts" :key="index" :text=post></TextPost>
+    <Post v-for="(post, index) in posts" :key="index" :text=post></Post>
+
+    <NewPost v-if="newPost"></NewPost>
 
     <v-btn
       fab
@@ -23,19 +25,22 @@
 </template>
 
 <script>
-import TextPost from "@/components/TextPost.vue";
+import Post from "@/components/Post.vue";
+import NewPost from "@/components/NewPost.vue";
 
 export default {
   name: 'App',
   components: {
-    TextPost,
+    Post,
+    NewPost,
   },
   data: () => ({
     posts: ["This is a test post"],
+    newPost: false,
   }),
   methods: {
     createNewPost() {
-      this.posts.push("This is a new dynamically added post.");
+      this.newPost = true;
     }
   },
 };

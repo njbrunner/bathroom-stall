@@ -1,7 +1,7 @@
 <template>
 <div class="container">
-    <div @mousedown="pointerDown" class="textPost-container" ref="textPost">
-        <p class="textPost-text">{{ text }}</p>
+    <div @mousedown="pointerDown" class="post-container" ref="post">
+        <p class="post-text">{{ text }}</p>
         <v-btn
         fab
         x-small
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: "TextPost",
+    name: "Post",
     props: {
         text: String
     },
@@ -58,7 +58,7 @@ export default {
             document.onpointermove = null;
         },
         dragElement: function(event) {
-            let element = this.$refs.textPost;
+            let element = this.$refs.post;
             event = event || window.event;
             event.preventDefault();
             // calculate the new cursor position:
@@ -75,18 +75,19 @@ export default {
             this.infoBox = !this.infoBox
         },
     },
+    mounted() {
+        this.$refs.post.style.left = "50vw";
+        this.$refs.post.style.top = "50vh";
+    }
 }
 </script>
 
 <style>
-.textPost-container {
+.post-container {
     position: absolute;
-    /* padding: 15px;
-    border: dashed black 1px;
-    cursor: move; */
     z-index: 10;
 }
-.textPost-text {
+.post-text {
     padding: 15px;
     border: dashed black 1px;
     cursor: move;

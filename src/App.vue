@@ -1,53 +1,44 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      dense
-    >
+    <v-app-bar app dense>
       <v-toolbar-title>Bathroom Stall</v-toolbar-title>
     </v-app-bar>
 
-    <Post v-for="(post, index) in posts" :key="index" :text=post></Post>
-
-    <NewPost v-if="newPost"></NewPost>
-
-    <v-btn
-      fab
-      bottom
-      right
-      fixed
-      class="more-margin"
-      @click="createNewPost"
-    >
+    <stall></stall>
+    <v-btn fab bottom right fixed class="more-margin" @click="createNewPost">
       <v-icon>mdi-comment-plus-outline</v-icon>
     </v-btn>
   </v-app>
 </template>
 
 <script>
-import Post from "@/components/Post.vue";
-import NewPost from "@/components/NewPost.vue";
-
+import Stall from "@/components/Stall.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Post,
-    NewPost,
+    // Post,
+    // NewPost,
+    Stall,
   },
   data: () => ({
-    posts: ["This is a test post"],
     newPost: false,
   }),
   methods: {
     createNewPost() {
-      this.newPost = true;
-    }
+      // this.newPost = true;
+      this.panZoomObject.pan(0, 0);
+    },
   },
 };
 </script>
 
 <style>
-.more-margin {
-  margin: 32px;
+body,
+html {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 </style>
